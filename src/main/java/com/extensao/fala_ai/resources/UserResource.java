@@ -3,16 +3,20 @@ package com.extensao.fala_ai.resources;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.extensao.fala_ai.dto.UserRequestDTO;
 import com.extensao.fala_ai.entities.User;
 import com.extensao.fala_ai.services.UserService;
 
 import io.swagger.v3.oas.annotations.Operation;
+import org.springframework.web.bind.annotation.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
@@ -45,6 +49,20 @@ public class UserResource {
 			return ResponseEntity.notFound().build();
 		}		
 		return ResponseEntity.ok().body(user);		
+	}
+	
+	@Operation(summary = "Criar um novo usuário")
+	@ApiResponse(responseCode = "201", description = "Usuário criado com sucesso")
+	@PostMapping(value = "/createUser")
+	public ResponseEntity<Void> createUser(@RequestBody UserRequestDTO data) {
+	    userService.createUser(
+	        data.name(), 
+	        data.cpf(), 
+	        data.password(), 
+	        data.phone()
+	    );
+	    
+	    return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
 
 }

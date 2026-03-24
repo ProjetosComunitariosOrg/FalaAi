@@ -7,6 +7,8 @@ import com.extensao.fala_ai.entities.enums.AccessLevel;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -31,6 +33,7 @@ public class User implements Serializable {
 	@Schema(description = "Celular do usuario", example = "34912345678")
 	private String phone;
 	@Schema(description = "Nível de acesso do usuario", example = "USER")
+	@Enumerated(EnumType.STRING)
 	private AccessLevel accessLevel;
 	
 	public User()
