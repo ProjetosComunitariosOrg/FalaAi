@@ -5,24 +5,32 @@ import java.util.Objects;
 
 import com.extensao.fala_ai.entities.enums.AccessLevel;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-
+@Schema(description = "Entidade Usuario")
 @Entity
 @Table(name = "Usuario")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	
+	@Schema(description = "ID do usuario", example = "1")
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Schema(description = "Nome do usuario", example = "Nome do Usuario")
 	private String name;
+	@Schema(description = "CPF do usuario", example = "01234567890")
 	private String cpf;
+	@Schema(description = "Senha do usuario", example = "kawn2opdop")
 	private String password;
+	@Schema(description = "Celular do usuario", example = "34912345678")
 	private String phone;
+	@Schema(description = "Nível de acesso do usuario", example = "USER")
 	private AccessLevel accessLevel;
 	
 	public User()
