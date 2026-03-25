@@ -1,7 +1,6 @@
 package com.extensao.fala_ai.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -30,7 +29,6 @@ public class UserService {
 	
 	public UserResponseDTO findById(Long id)
 	{
-		Optional<User> obj = userRepository.findById(id);
 		return userRepository.findById(id)
 	            .map(UserResponseDTO::new) // Converte User para UserResponseDTO se existir
 	            .orElseThrow(() -> new RuntimeException("Usuário não encontrado com o ID: " + id));

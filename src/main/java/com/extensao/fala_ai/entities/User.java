@@ -35,6 +35,8 @@ public class User implements Serializable {
 	@Schema(description = "Nível de acesso do usuario", example = "USER")
 	@Enumerated(EnumType.STRING)
 	private AccessLevel accessLevel;
+	@Schema(description = "Estatus atual do usuario", example = "ATIVO/true ou DESATIVADO/false")
+	private Boolean isActive;
 	
 	public User()
 	{
@@ -48,6 +50,7 @@ public class User implements Serializable {
 		this.password = password;
 		this.phone = phone;
 		this.accessLevel = accessLevel;
+		this.isActive = true;
 	}
 	public Long getId() {
 		return id;
@@ -84,6 +87,13 @@ public class User implements Serializable {
 	}
 	public void setAccessLevel(AccessLevel accessLevel) {
 		this.accessLevel = accessLevel;
+	}
+	
+	public Boolean getIsActive() {
+		return isActive;
+	}
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
 	}
 	@Override
 	public int hashCode() {

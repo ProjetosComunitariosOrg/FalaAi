@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.extensao.fala_ai.dto.UserRequestDTO;
 import com.extensao.fala_ai.dto.UserResponseDTO;
-import com.extensao.fala_ai.entities.User;
 import com.extensao.fala_ai.services.UserService;
 
 import io.swagger.v3.oas.annotations.Operation;
