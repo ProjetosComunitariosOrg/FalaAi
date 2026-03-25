@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.extensao.fala_ai.dto.UserResponseDTO;
 import com.extensao.fala_ai.entities.User;
 import com.extensao.fala_ai.entities.enums.AccessLevel;
 import com.extensao.fala_ai.repositories.UserRepository;
@@ -21,15 +22,18 @@ public class UserService {
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	
-	public List<User> findAll()
-	{
-		return userRepository.findAll();
+	public List<UserResponseDTO> findAll()
+	{		
+		List<User> users = userRepository.findAll();
+		return users.stream().map(UserResponseDTO::new).toList();
 	}
 	
-	public User findById(Long id)
+	public UserResponseDTO findById(Long id)
 	{
 		Optional<User> obj = userRepository.findById(id);
-		return obj.orElseThrow(() -> new RuntimeException("Usuário não encontrado com o ID: " + id));
+		return userRepository.findById(id)
+	            .map(UserResponseDTO::new) // Converte User para UserResponseDTO se existir
+	            .orElseThrow(() -> new RuntimeException("Usuário não encontrado com o ID: " + id));
 	}
 	
 	@Transactional

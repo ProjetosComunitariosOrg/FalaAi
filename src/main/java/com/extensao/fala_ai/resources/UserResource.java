@@ -8,15 +8,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.extensao.fala_ai.dto.UserRequestDTO;
+import com.extensao.fala_ai.dto.UserResponseDTO;
 import com.extensao.fala_ai.entities.User;
 import com.extensao.fala_ai.services.UserService;
 
 import io.swagger.v3.oas.annotations.Operation;
-import org.springframework.web.bind.annotation.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
@@ -31,9 +32,9 @@ public class UserResource {
 	@Operation(summary = "Buscar todos os usuários")
 	@ApiResponse(responseCode = "200", description = "Lista retornada com sucesso")
 	@GetMapping
-	public ResponseEntity<List<User>> findAll()
+	public ResponseEntity<List<UserResponseDTO>> findAll()
 	{
-		List<User> list = userService.findAll();
+		List<UserResponseDTO> list = userService.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 	
@@ -41,9 +42,9 @@ public class UserResource {
 	@ApiResponse(responseCode = "200", description = "Usuario retornado com sucesso")
 	@ApiResponse(responseCode = "400", description = "Usuario não encontrado")
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<User> findById(@PathVariable Long id)
+	public ResponseEntity<UserResponseDTO> findById(@PathVariable Long id)
 	{
-		User user = userService.findById(id);
+		UserResponseDTO user = userService.findById(id);
 		if(user == null)
 		{
 			return ResponseEntity.notFound().build();
