@@ -19,6 +19,7 @@ import com.extensao.fala_ai.services.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping(value = "/users")
@@ -54,7 +55,7 @@ public class UserResource {
 	@Operation(summary = "Criar um novo usuário")
 	@ApiResponse(responseCode = "201", description = "Usuário criado com sucesso")
 	@PostMapping(value = "/createUser")
-	public ResponseEntity<Void> createUser(@RequestBody UserRequestDTO data) {
+	public ResponseEntity<Void> createUser(@Valid @RequestBody UserRequestDTO data) {
 	    userService.createUser(
 	        data.name(), 
 	        data.cpf(), 
