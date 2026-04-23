@@ -1,4 +1,5 @@
 # 📢 Fala Aí
+
 ### Plataforma de Gestão de Demandas Urbanas — Software Livre para Cidadãos e Prefeituras
 
 > **Status:** 🚧 Em desenvolvimento ativo — MVP em construção.
@@ -21,12 +22,12 @@ Além disso, o projeto também possui como objetivo ser apresentado à Câmara M
 
 ## 💡 O Problema que Resolve
 
-| Problema Real | Impacto |
-|---|---|
-| Canais oficiais inacessíveis ou fora do ar | Demandas nunca chegam ao setor responsável |
-| Burocracia no registro de ocorrências | Cidadão desiste antes de protocolar |
-| Falta de transparência no andamento | Morador não sabe se foi ouvido |
-| Dados não centralizados para a gestão | Prefeitura não consegue mapear áreas críticas |
+| Problema Real                              | Impacto                                       |
+| ------------------------------------------ | --------------------------------------------- |
+| Canais oficiais inacessíveis ou fora do ar | Demandas nunca chegam ao setor responsável    |
+| Burocracia no registro de ocorrências      | Cidadão desiste antes de protocolar           |
+| Falta de transparência no andamento        | Morador não sabe se foi ouvido                |
+| Dados não centralizados para a gestão      | Prefeitura não consegue mapear áreas críticas |
 
 ---
 
@@ -41,11 +42,13 @@ Desenvolver uma plataforma de **software livre** para gestão de reclamações p
 ## ✨ Funcionalidades
 
 ### Para o Cidadão
+
 - 📝 **Registro de Ocorrência** — título, descrição, foto e localização
 - 📊 **Timeline de Status** — acompanhamento em tempo real: `Pendente` → `Em Execução` → `Resolvida`
 - 🗂️ **Painel Pessoal** — histórico completo de todas as solicitações
 
 ### Para a Gestão Pública
+
 - 🗺️ **Dashboard Administrativo** — visualização de demandas por bairro em tempo real
 - 📎 **Gestão de Evidências** — anexo de foto da solução concluída
 - 📄 **Exportação de Relatórios** — geração de dados em PDF/CSV para gestão municipal
@@ -55,23 +58,27 @@ Desenvolver uma plataforma de **software livre** para gestão de reclamações p
 ## 🛠️ Stack Tecnológica
 
 ### Back-End
-| Tecnologia | Uso |
-|---|---|
-| Java 25 (LTS) | Linguagem principal |
-| Spring Boot 3 | Framework principal |
-| Spring Data JPA + Hibernate | ORM e persistência |
-| Jakarta EE | Especificações enterprise |
-| H2 Database | Banco em memória (dev/testes) |
-| PostgreSQL | Banco relacional (produção) |
-| Swagger / OpenAPI | Documentação da API REST |
-| Maven | Gerenciamento de dependências |
+
+| Tecnologia                  | Uso                           |
+| --------------------------- | ----------------------------- |
+| Java 25 (LTS)               | Linguagem principal           |
+| Spring Boot 3               | Framework principal           |
+| Spring Data JPA + Hibernate | ORM e persistência            |
+| Jakarta EE                  | Especificações enterprise     |
+| H2 Database                 | Banco em memória (dev/testes) |
+| PostgreSQL                  | Banco relacional (produção)   |
+| Swagger / OpenAPI           | Documentação da API REST      |
+| Maven                       | Gerenciamento de dependências |
 
 ### Front-End
-| Tecnologia | Uso |
-|---|---|
-| Angular | Framework principal |
-| HTML5 + CSS3 | Estrutura e estilo |
-| REST API (JSON) | Comunicação com o back-end |
+
+| Tecnologia   | Uso                                      |
+| ------------ | ---------------------------------------- |
+| TypeScript   | Tipagem estática e segurança de tipos    |
+| React        | Framework principal                      |
+| Vite         | Bundler / dev server rápido              |
+| Tailwind CSS | Estilização utilitária / estilos globais |
+| Context API  | Gerenciamento de estado global simples   |
 
 ---
 
@@ -89,10 +96,11 @@ falaai/
 └── frontend/
     └── src/
         ├── app/
-        │   ├── pages/       # Telas do cidadão e do gestor
-        │   ├── services/    # Chamadas à API REST
-        │   └── components/  # Componentes reutilizáveis
-        └── assets/
+        │   ├── components/    # Componentes reutilizáveis
+        │   ├── context/       # Context API / providers
+        │   ├── pages/         # Páginas: Home, Login, Cadastro, etc.
+        │   └── services/      # Chamadas à API Rest
+        └── styles/            # Estilos globais e Tailwind
 ```
 
 ---
@@ -156,5 +164,3 @@ Estudante de ADS – IFTM | Backend Java Developer
 **Luis Otávio Dias**  
 Estudante de Sistemas De Informação – UEMG | Fullstack Developer | Python | Django | DRF | TypeScript | React  
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?style=flat&logo=linkedin)](https://linkedin.com/in/luis-otavio-dias)
-
-
