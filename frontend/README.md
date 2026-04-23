@@ -2,7 +2,7 @@
 
 Frontend da aplicação FalaAi.
 
-O protótipo do aplicativo foi desenvolvido no Figma, e o design original está disponível em https://www.figma.com/design/vEHaMtC1WWHMlhW0fkwNss/Municipal-Complaints-Mobile-App.
+O protótipo do aplicativo foi desenvolvido no Figma, e o design original está disponível em https://www.figma.com/design/dXRByV4Uhh2sx9ylgIt2iM/Fala-Ai-Design?node-id=0-1&t=F4viAPVl8W9NoXIL-1
 
 ## Como executar (front-end)
 
