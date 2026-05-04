@@ -58,8 +58,8 @@ export default function Cadastro() {
       <Header />
 
       {/* Content */}
-      <div className="px-[8px] mt-[40px]">
-        <div className="pb-[20px]">
+      <div className="px-[8px] md:px-[24px] mt-[40px] lg:max-w-[600px] w-full max-w-md mx-auto">
+        <div className="pb-[20px] flex items-center justify-center">
           <p className="font-['Rawline:Medium',sans-serif] leading-[normal] text-[29.03px] text-black">
             Cadastro
           </p>

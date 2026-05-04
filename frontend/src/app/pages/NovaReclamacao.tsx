@@ -104,7 +104,7 @@ export default function NovaReclamacao() {
       />
 
       {/* Form */}
-      <div className="px-[8px] mt-[24px]">
+      <div className="px-[8px] md:px-[24px] mt-[24px]">
         {/* Título */}
         <div className="flex flex-col gap-[8px] mb-[16px]">
           <label className="font-['Rawline:SemiBold',sans-serif] text-[14px] text-black">

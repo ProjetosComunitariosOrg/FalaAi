@@ -4,6 +4,7 @@ import { ArrowLeft, Calendar, MapPin, Tag } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Header } from "../components/Header";
 import { Button } from "../components/ui/button";
+import { StatusBadge } from "../components/StatusBadge";
 
 export default function DetalhesReclamacao() {
   const { id } = useParams<{ id: string }>();
@@ -42,19 +43,6 @@ export default function DetalhesReclamacao() {
       </div>
     );
   }
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case "Pendente":
-        return "bg-[#FFA800] text-white";
-      case "Em Análise":
-        return "bg-[#1351b4] text-white";
-      case "Resolvido":
-        return "bg-[#54AB34] text-white";
-      default:
-        return "bg-[#ccc] text-black";
-    }
-  };
 
   const getStatusIcon = (status: string) => {
     switch (status) {
@@ -113,7 +101,7 @@ export default function DetalhesReclamacao() {
       />
 
       {/* Status Timeline */}
-      <div className="px-[8px] mt-[24px]">
+      <div className="px-[8px] md:px-[24px] mt-[24px]">
         <div className="bg-white shadow-[0px_1px_6px_0px_rgba(51,51,51,0.16)] rounded-lg p-6">
           <p className="font-['Rawline:SemiBold',sans-serif] text-[16px] text-black mb-4">
             Status Atual
@@ -124,13 +112,10 @@ export default function DetalhesReclamacao() {
                 {getStatusIcon(reclamacao.status)}
               </span>
               <div>
-                <span
-                  className={`inline-block px-4 py-2 rounded-full text-[14px] font-bold ${getStatusColor(
-                    reclamacao.status,
-                  )}`}
-                >
-                  {reclamacao.status}
-                </span>
+                <StatusBadge
+                  status={reclamacao.status}
+                  className="px-4 py-2 text-[14px] font-bold rounded-full"
+                />
                 <p className="text-[12px] text-[#666] mt-2">
                   Atualizado em:{" "}
                   {new Date(reclamacao.dataAtualizacao).toLocaleString("pt-BR")}
@@ -210,7 +195,7 @@ export default function DetalhesReclamacao() {
       </div>
 
       {/* Informações da Reclamação */}
-      <div className="px-[8px] mt-[24px]">
+      <div className="px-[8px] md:px-[24px] mt-[24px]">
         <div className="bg-white shadow-[0px_1px_6px_0px_rgba(51,51,51,0.16)] rounded-lg p-6">
           <h2 className="font-['Rawline:SemiBold',sans-serif] text-[20px] text-black mb-4">
             {reclamacao.titulo}
@@ -287,7 +272,7 @@ export default function DetalhesReclamacao() {
       </div>
 
       {/* Protocolo */}
-      <div className="px-[8px] mt-[24px] mb-8">
+      <div className="px-[8px] md:px-[24px] mt-[24px] mb-8">
         <div className="bg-white shadow-[0px_1px_6px_0px_rgba(51,51,51,0.16)] rounded-lg p-6">
           <p className="text-[12px] text-[#666] mb-2">Número do Protocolo</p>
           <p className="font-mono text-[18px] text-[#1351b4] font-bold">

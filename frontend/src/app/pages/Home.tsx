@@ -1,9 +1,18 @@
 import { useNavigate } from "react-router";
 import { useApp } from "../context/AppContext";
-import { AlertCircle, FileText, MapPin, Plus, Users } from "lucide-react";
+import {
+  AlertCircle,
+  FileText,
+  MapPin,
+  Plus,
+  Users,
+  CheckCircle,
+} from "lucide-react";
 import { useEffect } from "react";
 import { Button } from "../components/ui/button";
 import { Header } from "../components/Header";
+import { StatCard } from "../components/StatCard";
+import { ComplaintCard } from "../components/ComplaintCard";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -36,7 +45,7 @@ export default function Home() {
   };
 
   return (
-    <div className="bg-[#f8f8f8] relative min-h-screen w-full pb-20 md:w-[900p]">
+    <div className="bg-[#f8f8f8] relative min-h-screen w-full pb-20">
       {/* Header */}
       <Header
         rightTopButton={
@@ -55,53 +64,34 @@ export default function Home() {
       />
 
       {/* Quick Stats */}
-      <div className="px-[8px] mt-[24px]">
+      <div className="px-[8px] md:px-[24px] mt-[24px]">
         <p className="text-[14px] text-black mb-[16px] font-['Rawline:Regular',sans-serif]">
           Resumo das suas solicitações
         </p>
         <div className="grid grid-cols-3 gap-[16px]">
-          <div className="bg-white shadow-[0px_1px_6px_0px_rgba(51,51,51,0.16)] p-[16px] rounded-lg">
-            <div className="flex flex-col items-center gap-2">
-              <AlertCircle className="text-[#FFA800] size-8" />
-              <p className="text-[24px] font-bold text-black">
-                {reclamacoesPendentes}
-              </p>
-              <p className="text-[12px] text-center text-black">Pendente</p>
-            </div>
-          </div>
-          <div className="bg-white shadow-[0px_1px_6px_0px_rgba(51,51,51,0.16)] p-[16px] rounded-lg">
-            <div className="flex flex-col items-center gap-2">
-              <FileText className="text-[#1351b4] size-8" />
-              <p className="text-[24px] font-bold text-black">
-                {reclamacoesEmAnalise}
-              </p>
-              <p className="text-[12px] text-center text-black">Em Análise</p>
-            </div>
-          </div>
-          <div className="bg-white shadow-[0px_1px_6px_0px_rgba(51,51,51,0.16)] p-[16px] rounded-lg">
-            <div className="flex flex-col items-center gap-2">
-              <svg
-                className="size-8 text-[#54AB34]"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              <p className="text-[24px] font-bold text-black">
-                {reclamacoesResolvidas}
-              </p>
-              <p className="text-[12px] text-center text-black">Resolvido</p>
-            </div>
-          </div>
+          <StatCard
+            icon={<AlertCircle />}
+            iconColor="#FFA800"
+            value={reclamacoesPendentes}
+            label="Pendente"
+          />
+          <StatCard
+            icon={<FileText />}
+            iconColor="#1351b4"
+            value={reclamacoesEmAnalise}
+            label="Em Análise"
+          />
+          <StatCard
+            icon={<CheckCircle />}
+            iconColor="#54AB34"
+            value={reclamacoesResolvidas}
+            label="Resolvido"
+          />
         </div>
       </div>
 
       {/* Acesso Rápido */}
-      <div className="px-[8px] mt-[32px]">
+      <div className="px-[8px] md:px-[24px] mt-[32px]">
         <p className="text-[14px] text-black mb-[16px] font-['Rawline:Regular',sans-serif]">
           Acesso Rápido
         </p>
@@ -149,7 +139,7 @@ export default function Home() {
       </div>
 
       {/* Últimas Reclamações */}
-      <div className="px-[8px] mt-[32px]">
+      <div className="px-[8px] md:px-[24px] mt-[32px]">
         <div className="flex items-center justify-between mb-[16px]">
           <div>
             <p className="font-['Rawline:SemiBold',sans-serif] text-[16.8px] text-black">
@@ -167,37 +157,16 @@ export default function Home() {
           </button>
         </div>
 
-        <div className="bg-white shadow-[0px_1px_6px_0px_rgba(51,51,51,0.16)] rounded-lg">
+        <div className="bg-white shadow-[0px_1px_6px_0px_rgba(51,51,51,0.16)] rounded-lg overflow-hidden">
           {minhasReclamacoes.slice(0, 3).map((reclamacao, index) => (
             <div key={reclamacao.id}>
-              <button
+              <ComplaintCard
+                variant="summary"
+                title={reclamacao.titulo}
+                status={reclamacao.status}
+                date={reclamacao.dataCriacao}
                 onClick={() => navigate(`/reclamacao/${reclamacao.id}`)}
-                className="w-full p-[16px] text-left"
-              >
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <p className="text-[11.67px] text-black mb-1">
-                      {new Date(reclamacao.dataCriacao).toLocaleDateString(
-                        "pt-BR",
-                      )}
-                    </p>
-                    <p className="font-['Rawline:SemiBold',sans-serif] text-[14px] text-black mb-1">
-                      {reclamacao.titulo}
-                    </p>
-                    <span
-                      className={`inline-block px-2 py-1 rounded text-[11px] ${
-                        reclamacao.status === "Pendente"
-                          ? "bg-[#FFA800] text-white"
-                          : reclamacao.status === "Em Análise"
-                            ? "bg-[#1351b4] text-white"
-                            : "bg-[#54AB34] text-white"
-                      }`}
-                    >
-                      {reclamacao.status}
-                    </span>
-                  </div>
-                </div>
-              </button>
+              />
               {index < Math.min(minhasReclamacoes.length - 1, 2) && (
                 <div className="h-px bg-[#ccc] mx-[16px]" />
               )}

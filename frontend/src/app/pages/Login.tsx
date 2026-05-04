@@ -6,6 +6,8 @@ import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 import { Eye, EyeOff } from "lucide-react";
 import { Header } from "../components/Header";
+import img1 from "../static/img1.png";
+import img2 from "../static/img2.png";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -29,13 +31,30 @@ export default function Login() {
   };
 
   return (
-    <div className="bg-white relative min-h-screen w-full">
+    <div className="bg-white relative min-h-screen w-full grid grid-cols-1 lg:grid-cols-2 grid-rows-[auto_1fr] lg:px-0">
       {/* Header */}
-      <Header />
+      <div className="lg:col-span-2 h-[120px]">
+        <Header />
+      </div>
+
+      <div className="hidden px-[8px] lg:flex lg:max-w-[900px] items-center justify-center justify-self-end">
+        <div className="relative h-[700px] w-[700px]">
+          <img
+            src={img1}
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <img
+            src={img2}
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover z-10"
+          />
+        </div>
+      </div>
 
       {/* Content */}
-      <div className="px-[8px] mt-[40px]">
-        <div className="pb-[20px]">
+      <div className="p-4 lg:p-8 lg:max-w-[600px] w-full max-w-md mx-auto lg:mx-0 justify-self-end">
+        <div className="pb-[20px] flex items-center justify-center">
           <p className="font-['Rawline:Medium',sans-serif] leading-[normal] text-[29.03px] text-black">
             Acesso ao Sistema
           </p>
@@ -77,7 +96,7 @@ export default function Login() {
               className="h-[40px] rounded-[4px] border-[#888] px-[16px] pr-12 text-[14px]"
             />
             <Button
-              type="button"
+              type="submit"
               variant="ghost"
               size="icon"
               onClick={() => setMostrarSenha(!mostrarSenha)}
